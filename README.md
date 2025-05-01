@@ -22,7 +22,7 @@ These branches may not be pushed to directly - instead, a pull request targeting
 
 **Releases:**
 
-1. Create a release branch from `main` using the `Cut release` workflow (triggered manually via GitHub Actions). This workflow will automatically generate a working pull request targeting master.
+1. Create a release branch from `main` using the [`Cut release`](workflows/cut-release.yaml) workflow (triggered manually via GitHub Actions). This workflow will automatically generate a working pull request targeting master.
 2. Merge the generated pull request once the release is considered ready. This will trigger a new release to be packaged and distributed as both GitHub and PyPI releases.
 
 **Release patches:**
@@ -107,6 +107,9 @@ This repository automates Git-Flow for Python projects using GitHub Actions and 
 
 ## Installation
 
+
+### Local Configuration
+
 Unfortunately, GitHub does not support workflows defined in a Git submodule, so a bit of a workaround is required. To configure a GitHub-hosted codebase to use this library, first fork this repo. Below is the GitHub CLI command to do so:
 
 ```shell
@@ -120,3 +123,31 @@ git clone https://github.com/<you>/cicd.git .github
 ```
 
 As you tweak the workflow to suit your own needs, be sure to merge them into your fork for safe-keeping. Feel free to submit a pull request to this repo with any changes you feel others might find useful.
+
+
+### GitHub Repo Configuration
+
+
+You can verify that the required secrets are accessible to the workflow by manually triggering the [`Validate repository`](workflows/validate-repo.yaml) workflow via GitHub Actions. Note that this check does not verify `MY_TOKEN` permissions. Read on for more information regarding required permissions.
+
+#### `MY_TOKEN`
+
+The `MY_TOKEN` secret should be set to a personal access token with the following permissions:
+
+`contents: write` 
+- Used in workflows like sync-branches.yaml, publish-release.yaml, and cut-release.yaml to push changes, create tags, and manage branches.
+
+`pull-requests: write`
+- Required in sync-branches.yaml and cut-release.yaml to create and merge pull requests programmatically.
+
+Recommended Scope for `MY_TOKEN`
+When creating the personal access token, ensure it has the following scopes:
+
+- `repo`: Full control of private repositories (for pushing changes, creating branches, and managing pull requests).
+
+- `workflow`: To trigger and interact with GitHub Actions workflows.
+
+
+#### `PYPI_TOKEN`
+
+The `PYPI_TOKEN` should be set to the PyPI authentication token used to access your PyPI project.
