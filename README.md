@@ -66,6 +66,24 @@ This repository automates Git-Flow for Python projects using GitHub Actions and 
    - Tags, builds, and publishes releases to GitHub and PyPI.
 
 
+### Actions
+
+**[Add label:](actions/add-label/action.yaml)**
+   - Adds labels to pull requests based on their context.
+
+**[Get touched files:](actions/get-touched-files/action.yaml)**
+   - Identifies files modified in a pull request.
+
+**[Build release:](actions/build-release/action.yaml)**
+   - Builds distribution artifacts for a specific version.
+
+**[Publish GitHub release:](actions/publish-github-release/action.yaml)**
+   - Publishes a release to GitHub, including artifact signatures.
+
+**[Publish PyPI release:](actions/publish-pypi-release/action.yaml)**
+   - Publishes a release to PyPI using a provided token.
+
+
 ### Scripts
 
 **[install-tools.sh:](scripts/install-tools.sh)**
@@ -85,24 +103,6 @@ This repository automates Git-Flow for Python projects using GitHub Actions and 
 
 **[publish-distribution.sh:](scripts/publish-distribution.sh)**
    - Publishes distribution artifacts to PyPI.
-
-
-### Custom Actions
-
-**[Add label:](actions/add-label/action.yaml)**
-   - Adds labels to pull requests based on their context.
-
-**[Get touched files:](actions/get-touched-files/action.yaml)**
-   - Identifies files modified in a pull request.
-
-**[Build release:](actions/build-release/action.yaml)**
-   - Builds distribution artifacts for a specific version.
-
-**[Publish GitHub release:](actions/publish-github-release/action.yaml)**
-   - Publishes a release to GitHub, including artifact signatures.
-
-**[Publish PyPI release:](actions/publish-pypi-release/action.yaml)**
-   - Publishes a release to PyPI using a provided token.
 
 
 ## Installation
